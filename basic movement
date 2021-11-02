@@ -1,0 +1,30 @@
+from djitellopy import Tello
+from time import sleep
+
+tello = Tello()
+tello.connect()
+print(tello.get_battery())
+
+tello.takeoff()
+sleep(1)
+
+tello.send_rc_control(0, 0, 50, 0)
+sleep(3)
+
+tello.send_rc_control(0, 50, 0, 0)
+sleep(2.5)
+
+tello.send_rc_control(-50, 0, 0, 0)
+sleep(2.5)
+
+tello.send_rc_control(0, -50, 0, 0)
+sleep(2.5)
+
+tello.send_rc_control(50, 0, 0, 0)
+sleep(2.5)
+
+tello.send_rc_control(0, 0, 0, 0)
+tello.flip_forward()
+sleep(1)
+tello.land()
+tello.end()
